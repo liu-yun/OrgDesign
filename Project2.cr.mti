@@ -1,0 +1,32 @@
+C:/Users/Yun/Desktop/Project2/datapath/mux3.v {1 {vlog -work work -vopt -stats=none C:/Users/Yun/Desktop/Project2/datapath/mux3.v
+Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  3 2014
+-- Compiling module mux3
+
+Top level modules:
+	mux3
+
+} {} {}} C:/Users/Yun/Desktop/Project2/datapath/im.v {1 {vlog -work work -vopt -stats=none C:/Users/Yun/Desktop/Project2/datapath/im.v
+Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  3 2014
+-- Compiling module im_4k
+
+Top level modules:
+	im_4k
+
+} {} {}} C:/Users/Yun/Desktop/Project2/mips.v {1 {vlog -work work -vopt -stats=none C:/Users/Yun/Desktop/Project2/mips.v
+Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  3 2014
+-- Compiling module mux2_32
+-- Compiling module mux3_32
+-- Compiling module mux3_5
+-- Compiling module mips
+
+Top level modules:
+	mips
+
+} {} {}} C:/Users/Yun/Desktop/Project2/datapath/mux2.v {1 {vlog -work work -vopt -stats=none C:/Users/Yun/Desktop/Project2/datapath/mux2.v
+Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  3 2014
+-- Compiling module mux2
+
+Top level modules:
+	mux2
+
+} {} {}}
