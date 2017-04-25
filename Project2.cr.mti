@@ -1,16 +1,34 @@
-C:/Users/Yun/Desktop/Project2/datapath/mux3.v {1 {vlog -work work -vopt -stats=none C:/Users/Yun/Desktop/Project2/datapath/mux3.v
+C:/Users/Yun/Desktop/Project2/datapath/gpr.v {1 {vlog -work work -vopt -stats=none C:/Users/Yun/Desktop/Project2/datapath/gpr.v
 Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  3 2014
--- Compiling module mux3
+-- Compiling module gpr
 
 Top level modules:
-	mux3
+	gpr
 
-} {} {}} C:/Users/Yun/Desktop/Project2/datapath/im.v {1 {vlog -work work -vopt -stats=none C:/Users/Yun/Desktop/Project2/datapath/im.v
+} {} {}} C:/Users/Yun/Desktop/Project2/datapath/npc.v {1 {vlog -work work -vopt -stats=none C:/Users/Yun/Desktop/Project2/datapath/npc.v
 Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  3 2014
--- Compiling module im_4k
+-- Compiling module npc
 
 Top level modules:
-	im_4k
+	npc
+
+} {} {}} C:/Users/Yun/Desktop/Project2/datapath/mux.v {1 {vlog -work work -vopt -stats=none C:/Users/Yun/Desktop/Project2/datapath/mux.v
+Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  3 2014
+-- Compiling module mux2_32
+-- Compiling module mux3_32
+-- Compiling module mux3_5
+
+Top level modules:
+	mux2_32
+	mux3_32
+	mux3_5
+
+} {} {}} C:/Users/Yun/Desktop/Project2/datapath/alu.v {1 {vlog -work work -vopt -stats=none C:/Users/Yun/Desktop/Project2/datapath/alu.v
+Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  3 2014
+-- Compiling module alu
+
+Top level modules:
+	alu
 
 } {} {}} C:/Users/Yun/Desktop/Project2/mips.v {1 {vlog -work work -vopt -stats=none C:/Users/Yun/Desktop/Project2/mips.v
 Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  3 2014
@@ -21,12 +39,5 @@ Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  3 2014
 
 Top level modules:
 	mips
-
-} {} {}} C:/Users/Yun/Desktop/Project2/datapath/mux2.v {1 {vlog -work work -vopt -stats=none C:/Users/Yun/Desktop/Project2/datapath/mux2.v
-Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  3 2014
--- Compiling module mux2
-
-Top level modules:
-	mux2
 
 } {} {}}

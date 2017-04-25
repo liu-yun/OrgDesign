@@ -20,7 +20,7 @@ module mips(clk, rst);
     npc npc0(.pc(pc), .imm(instr[25:0]), .target(AluOut), .NpcSel(NpcSel), .zero(zero), .npc(npc), .pcp4(pcp4));
     alu alu0(.A(rd1), .B(AluB), .AluCtrl(AluCtrl), .dout(AluOut), .zero(zero), .overflow());
     gpr gpr0(.clk(clk), .rst(rst), .ra(instr[25:21]), .rb(instr[20:16]), .rw(writereg), 
-             .wd(writedata), .RegWrite(RegWrite), .rd1(rd1), .rd2(rd2), .NpcSel(NpcSel));
+             .wd(writedata), .RegWrite(RegWrite), .rd1(rd1), .rd2(rd2));
     dm_4k dm0(.addr(AluOut[9:0]), .din(rd2), .MemWrite(MemWrite), .clk(clk), .dout(readdata));
     ext ext0(.imm16(instr[15:0]), .ExtOp(ExtOp), .extout(extout));
     mux3_32 writedata_mux(.a(AluOut), .b(readdata), .c(pcp4), .sel(wd_sel), .out(writedata));

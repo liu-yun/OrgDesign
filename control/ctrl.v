@@ -33,7 +33,7 @@ module ctrl(opcode, funct, RegDst, AluSrc, MemWrite, RegWrite, wd_sel, NpcSel, E
     output reg [3:0] AluCtrl;
 
     always @(opcode or funct) begin
-      if (opcode  ==  `R_TYPE) begin
+      if (opcode == `R_TYPE) begin
         case (funct)
           `ADDU : AluCtrl <= `Addu;
           `SUBU : AluCtrl <= `Subu;
