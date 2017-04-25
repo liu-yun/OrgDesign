@@ -7,12 +7,11 @@ module npc(pc, imm, target, NpcSel, zero, npc, pcp4);
     output [31:2] npc;
     output [31:0] pcp4;
 
-    wire [15:0] bimm;
-    assign bimm = imm[15:0];
-    assign npc = (zero & NpcSel == 3'b001) ? pc + 1 + {{14{bimm[15]}}, bimm} : //beq
-                        (NpcSel == 3'b011) ? {pc[31:28], imm} :                //j
-                        (NpcSel == 3'b100) ? target :                          //jr
-                                             pc + 1;
-    assign pcp4 = {2'b00, pc + 1} + 4;
+    assign pcp4 = {2'b00, pc + 1};
+    assign npc = (zero && NpcSel == 3'b001) ? pc + 1 + {{14{imm[15]}}, imm[15:0]} : //beq
+                         (NpcSel == 3'b010) ? {pcp4[31:28], imm} :                  //jal
+                         (NpcSel == 3'b011) ? {pcp4[31:28], imm} :                  //j
+                         (NpcSel == 3'b100) ? target[29:0] :                        //jr
+                                              pc + 1;
 
 endmodule

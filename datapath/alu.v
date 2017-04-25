@@ -8,7 +8,7 @@
 `define Lt     4'b0110
 
 module alu(A, B, AluCtrl, dout, zero, overflow);
-    input [31:0] A, B;
+    input signed [31:0] A, B;
     input [3:0] AluCtrl;
     output reg [31:0] dout;
     output zero, overflow;
@@ -21,7 +21,7 @@ module alu(A, B, AluCtrl, dout, zero, overflow);
         `Bb   : dout <= B;
         `Aa   : dout <= A;
         `Add  : begin dout <= A + B; end
-        `Lt   : dout <= A < B;
+        `Lt   : dout <= {31'b0, A < B};
         default : dout <= 32'b0;
       endcase
     end
