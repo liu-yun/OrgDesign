@@ -12,6 +12,7 @@ module alu(A, B, AluCtrl, dout, zero, overflow);
     input [3:0] AluCtrl;
     output reg [31:0] dout;
     output zero, overflow;
+    reg sign = 0;
 
     always @(A or B or AluCtrl) begin
       case (AluCtrl)
@@ -20,11 +21,11 @@ module alu(A, B, AluCtrl, dout, zero, overflow);
         `Or   : dout <= A | B;
         `Bb   : dout <= B;
         `Aa   : dout <= A;
-        `Add  : begin dout <= A + B; end
+        `Add  : {sign, dout} <= {A[31], A} + {B[31], B};
         `Lt   : dout <= {31'b0, A < B};
         default : dout <= 32'b0;
       endcase
     end
     assign zero = (dout == 32'b0);
-    assign overflow = A + B;
+    assign overflow = (AluCtrl == `Add && (sign ^ dout[31]));
 endmodule

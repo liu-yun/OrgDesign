@@ -5,13 +5,6 @@ Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  3 2014
 Top level modules:
 	npc
 
-} {} {}} C:/Users/Yun/Desktop/Project2/datapath/gpr.v {1 {vlog -work work -vopt -stats=none C:/Users/Yun/Desktop/Project2/datapath/gpr.v
-Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  3 2014
--- Compiling module gpr
-
-Top level modules:
-	gpr
-
 } {} {}} C:/Users/Yun/Desktop/Project2/datapath/alu.v {1 {vlog -work work -vopt -stats=none C:/Users/Yun/Desktop/Project2/datapath/alu.v
 Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  3 2014
 -- Compiling module alu

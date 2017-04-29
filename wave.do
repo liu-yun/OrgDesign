@@ -9,10 +9,15 @@ add wave -noupdate /mips/AluOut
 add wave -noupdate /mips/RegWrite
 add wave -noupdate /mips/writereg
 add wave -noupdate /mips/writedata
+add wave -noupdate /mips/overflow
+add wave -noupdate /mips/alu0/A
+add wave -noupdate /mips/alu0/B
+add wave -noupdate /mips/alu0/AluCtrl
+add wave -noupdate /mips/alu0/over
 add wave -noupdate -expand /mips/gpr0/register
 add wave -noupdate /mips/dm0/dm
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {3782 ns} 0}
+WaveRestoreCursors {{Cursor 1} {0 ns} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 150
 configure wave -valuecolwidth 106
@@ -28,7 +33,7 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {3266 ns} {4250 ns}
+WaveRestoreZoom {0 ns} {984 ns}
 view wave 
 wave clipboard store
 wave create -pattern none -portmode input -language vlog /mips/clk 
