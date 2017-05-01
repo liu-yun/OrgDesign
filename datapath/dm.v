@@ -1,7 +1,7 @@
-module dm_4k(addr, din, MemWrite, clk, dout);
+module dm_4k(addr, din, we, clk, dout);
     input [11:2] addr;           // address bus
     input [31:0] din;            // 32-bit input data
-    input MemWrite;                    // memory write enable
+    input we;                    // memory write enable
     input clk;                   // clock
     output reg [31:0] dout;      // 32-bit memory output
 
@@ -15,7 +15,7 @@ module dm_4k(addr, din, MemWrite, clk, dout);
     end
 
     always @(posedge clk) begin
-        if(MemWrite) begin
+        if(we) begin
             dm[addr] <= din;
         end
         else dout <= dm[addr];
