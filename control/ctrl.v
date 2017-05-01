@@ -57,6 +57,7 @@ module ctrl(opcode, funct, RegDst, AluSrc, MemWrite, RegWrite, wd_sel, NpcSel, E
     assign RegDst = {(opcode == `JAL), (opcode == `R_TYPE&&(funct == `ADDU || funct == `SUBU || funct == `SLT))};
     assign AluSrc = (opcode == `ORI || opcode == `LW || opcode == `SW || opcode == `LUI || opcode == `ADDI || opcode == `ADDIU);
     assign MemWrite = (opcode == `SW);
+    assign MemtoReg = (opcode == `LW);
     assign RegWrite = ((opcode == `R_TYPE && (funct == `ADDU || funct == `SUBU || funct == `SLT)) || 
                       opcode == `ORI || opcode == `LW || opcode == `LUI || opcode == `JAL ||
                       opcode == `ADDI || opcode == `ADDIU);
@@ -66,8 +67,8 @@ module ctrl(opcode, funct, RegDst, AluSrc, MemWrite, RegWrite, wd_sel, NpcSel, E
  (opcode == `R_TYPE && funct == `JR) ? 3'b100:
                                        3'b000;
     assign ExtOp = {(opcode == `LUI), (opcode == `LW || opcode == `SW || opcode == `ADDI || opcode == `ADDIU)};
-    assign wd_sel = (!MemWrite&&opcode!=`JAL) ? 2'b00:
-                     (MemWrite&&opcode!=`JAL) ? 2'b01:
+    assign wd_sel = (!MemtoReg&&opcode!=`JAL) ? 2'b00:
+                     (MemtoReg&&opcode!=`JAL) ? 2'b01:
                                                 2'b10;
 
 endmodule

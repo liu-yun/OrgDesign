@@ -18,6 +18,9 @@ module dm_4k(addr, din, we, clk, dout);
         if(we) begin
             dm[addr] <= din;
         end
-        else dout <= dm[addr];
+    end
+    
+    always @(*) begin 
+        dout <= dm[addr];
     end
 endmodule

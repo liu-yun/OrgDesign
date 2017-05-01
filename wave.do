@@ -12,6 +12,7 @@ add wave -noupdate /mips/writedata
 add wave -noupdate /mips/overflow
 add wave -noupdate /mips/alu0/A
 add wave -noupdate /mips/alu0/B
+add wave -noupdate /mips/dm0/dout
 add wave -noupdate /mips/alu0/AluCtrl
 add wave -noupdate /mips/alu0/over
 add wave -noupdate -expand /mips/gpr0/register
