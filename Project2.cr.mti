@@ -1,9 +1,9 @@
-C:/Users/Yun/Desktop/Project2/datapath/dm.v {1 {vlog -work work -vopt -stats=none C:/Users/Yun/Desktop/Project2/datapath/dm.v
+C:/Users/Yun/Desktop/Project2/datapath/gpr.v {1 {vlog -work work -vopt -stats=none C:/Users/Yun/Desktop/Project2/datapath/gpr.v
 Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  3 2014
--- Compiling module dm_4k
+-- Compiling module gpr
 
 Top level modules:
-	dm_4k
+	gpr
 
 } {} {}} C:/Users/Yun/Desktop/Project2/datapath/npc.v {1 {vlog -work work -vopt -stats=none C:/Users/Yun/Desktop/Project2/datapath/npc.v
 Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  3 2014
@@ -12,12 +12,12 @@ Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  3 2014
 Top level modules:
 	npc
 
-} {} {}} C:/Users/Yun/Desktop/Project2/datapath/gpr.v {1 {vlog -work work -vopt -stats=none C:/Users/Yun/Desktop/Project2/datapath/gpr.v
+} {} {}} C:/Users/Yun/Desktop/Project2/datapath/alu.v {1 {vlog -work work -vopt -stats=none C:/Users/Yun/Desktop/Project2/datapath/alu.v
 Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  3 2014
--- Compiling module gpr
+-- Compiling module alu
 
 Top level modules:
-	gpr
+	alu
 
 } {} {}} C:/Users/Yun/Desktop/Project2/datapath/mux.v {1 {vlog -work work -vopt -stats=none C:/Users/Yun/Desktop/Project2/datapath/mux.v
 Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  3 2014
@@ -30,12 +30,22 @@ Top level modules:
 	mux3_32
 	mux3_5
 
-} {} {}} C:/Users/Yun/Desktop/Project2/datapath/alu.v {1 {vlog -work work -vopt -stats=none C:/Users/Yun/Desktop/Project2/datapath/alu.v
+} {} {}} C:/Users/Yun/Desktop/Project2/control/ctrl.v {1 {vlog -work work -vopt -stats=none C:/Users/Yun/Desktop/Project2/control/ctrl.v
 Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  3 2014
--- Compiling module alu
+-- Compiling module ctrl
 
 Top level modules:
-	alu
+	ctrl
+
+} {} {}} C:/Users/Yun/Desktop/Project2/mips.v {1 {vlog -work work -vopt -stats=none C:/Users/Yun/Desktop/Project2/mips.v
+Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  3 2014
+-- Compiling module mux2_32
+-- Compiling module mux3_32
+-- Compiling module mux3_5
+-- Compiling module mips
+
+Top level modules:
+	mips
 
 } {} {}} C:/Users/Yun/Desktop/Project2/datapath/pc.v {1 {vlog -work work -vopt -stats=none C:/Users/Yun/Desktop/Project2/datapath/pc.v
 Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  3 2014
