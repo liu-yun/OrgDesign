@@ -27,8 +27,10 @@ module gpr(clk, rst, ra, rb, rw, wd, RegWrite, overflow, rd1, rd2);
         end
         else begin
             if (RegWrite) begin
-                if(rw && !overflow)
+                if(rw && !overflow) begin
                     register[rw] <= wd;
+                    $display("Register[%2D]=%8X", rw, wd);
+                end
                 if(overflow)
                     overFlag <= 1;
             end

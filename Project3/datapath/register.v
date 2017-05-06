@@ -7,6 +7,7 @@ module register_we(clk, next, we, out);
       if(we)
         out <= next;
     end
+    initial out <= 32'b0;
 endmodule
 
 module register_nwe(clk, next, out);
@@ -17,4 +18,5 @@ module register_nwe(clk, next, out);
     always @(posedge clk) begin
       out <= next;
     end
+    initial out <= 32'b0;
 endmodule
