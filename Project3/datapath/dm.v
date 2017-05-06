@@ -9,13 +9,6 @@ module dm_4k(addr, din, we, clk, dout, bmode, bsel);
 
     reg [31:0] dm[1023:0];
 
-    integer i;
-    initial begin
-      for (i = 0; i < 1024 ; i = i + 1) begin
-          dm[i] <= 0;
-      end
-    end
-
     always @(posedge clk) begin
         if(we) begin
             if(bmode) begin

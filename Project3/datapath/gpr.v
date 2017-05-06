@@ -1,12 +1,12 @@
-module gpr(clk, rst, ra, rb, rw, wd, RegWrite, overflow, rd1, rd2);
+module gpr(clk, rst, ra, rb, rw, wd, GPRWr, overflow, rda, rdb);
     input clk, rst;
     input [4:0] ra, rb, rw;
     input [31:0] wd;
-    input RegWrite, overflow;
-    output [31:0] rd1, rd2;
+    input GPRWr, overflow;
+    output [31:0] rda, rdb;
 
     reg [31:0] register[31:0];
-    reg [31:0] overFlag = 0;
+    reg [31:0] overflag = 0;
     integer i;
 
     initial begin
@@ -15,24 +15,24 @@ module gpr(clk, rst, ra, rb, rw, wd, RegWrite, overflow, rd1, rd2);
       end
     end
 
-    assign rd1 = register[ra];
-    assign rd2 = register[rb];
+    assign rda = register[ra];
+    assign rdb = register[rb];
 
     always @(posedge clk or posedge rst) begin
         if (rst) begin
             for(i = 0; i < 32; i = i + 1) begin
-            register[i] <= 0;
+                register[i] <= 0;
             end
-            overFlag <= 0;
+            overflag <= 0;
         end
         else begin
-            if (RegWrite) begin
+            if (GPRWr) begin
                 if(rw && !overflow) begin
                     register[rw] <= wd;
                     $display("Register[%2D]=%8X", rw, wd);
                 end
                 if(overflow)
-                    overFlag <= 1;
+                    overflag <= 1;
             end
         end
     end

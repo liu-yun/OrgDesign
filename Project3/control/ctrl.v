@@ -1,7 +1,7 @@
-module ctrl(clk, rst, opcode, funct, zero, PCWr, NpcSel, IRWr, GPRWr, DMWr, AluOp, AluBsel, GPRsel, WDsel, ExtOp, bmode);
+module ctrl(clk, rst, opcode, funct, zero, PCWr, npcSel, IRWr, GPRWr, DMWr, AluOp, AluBsel, GPRsel, WDsel, ExtOp, bmode);
     input [5:0] opcode, funct;
     input clk, rst, zero;
-    output [2:0] NpcSel;
+    output [2:0] npcSel;
     output [1:0] GPRsel, WDsel, ExtOp;
     output AluBsel, GPRWr, bmode, PCWr, IRWr, GPRWr, DMWr;
     output [3:0] AluOp;
@@ -47,32 +47,32 @@ module ctrl(clk, rst, opcode, funct, zero, PCWr, NpcSel, IRWr, GPRWr, DMWr, AluO
 
     reg [3:0] state = 0;
     always @(posedge clk or posedge rst) begin
-      if(rst)
-        state<=S0;
+      if (rst)
+        state <= S0;
       else begin
         case (state)
           S0:begin
-              state<=S1;
+              state <= S1;
              end 
           S1:begin
-              state<=S2;
+              state <= S2;
              end
           S2:begin
-              if(ADDU|SUBU|SLT|ORI|LUI|ADDI|ADDIU)
-                state<=S4;
-              else if(LW|LB|SW|SB)
-                state<=S3;
-              else if(BEQ|J|JAL|JR)
-                state<=S0;
+              if (ADDU | SUBU | SLT | ORI | LUI | ADDI | ADDIU)
+                state <= S4;
+              else if (LW | LB | SW | SB)
+                state <= S3;
+              else if (BEQ | J | JAL | JR)
+                state <= S0;
              end
           S3:begin
-              if(LW|LB)
-                state<=S4;
+              if (LW | LB)
+                state <= S4;
               else
-                state<=S0;
+                state <= S0;
              end
           S4:begin
-              state<=S0;
+              state <= S0;
              end
         endcase
       end
@@ -89,20 +89,20 @@ module ctrl(clk, rst, opcode, funct, zero, PCWr, NpcSel, IRWr, GPRWr, DMWr, AluO
                                     Subu; // BEQ
 
     assign PCWr = (state === S0) | (state === S2 & ( J | JAL | JR | (BEQ & zero)));
-    assign NpcSel = (state === S0) ? 3'b000:  //Invalid
+    assign npcSel = (state === S0) ? 3'b000:  //Invalid
   (state === S1) & (BEQ | J | JAL) ? 3'b001:
               (state === S2) & BEQ ? 3'b001:
         (state === S2) & (J | JAL) ? 3'b010:
                (state === S2) & JR ? 3'b100:
                                      3'b000; //PC+4
     assign IRWr = (state === S0);
-    assign GPRWr = ((state === S4) & (ADDU | SUBU | SLT | ORI | LW | LB | LUI | JAL | ADDI | ADDIU))|((state === S2) & JAL);
+    assign GPRWr = ((state === S4) & (ADDU | SUBU | SLT | ORI | LW | LB | LUI | JAL | ADDI | ADDIU)) | ((state === S2) & JAL);
     assign DMWr = (state === S3) & (SW | SB);
     assign GPRsel = {JAL, (ADDU | SUBU | SLT)}; //RegDst
     assign AluBsel = (ORI | LW | LB | SW | SB | LUI | ADDI | ADDIU);
     assign MemtoReg = (LW | LB);
     assign bmode = (LB | SB);
-    assign ExtOp = (state === S0) ? 2'b11: {(LUI), (LW | LB| SW | SB | ADDI | ADDIU)};
+    assign ExtOp = (state === S0) ? 2'b11: {(LUI), (LW | LB | SW | SB | ADDI | ADDIU)};
     assign WDsel =       (state === S0) ? 2'b11: //Invalid
                     (!MemtoReg && !JAL) ? 2'b00:
                      (MemtoReg && !JAL) ? 2'b01:

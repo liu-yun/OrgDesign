@@ -5,12 +5,12 @@ add wave -noupdate /testbench/mips0/rst
 add wave -noupdate /testbench/mips0/instrR
 add wave -noupdate /testbench/mips0/ctrl0/state
 add wave -noupdate /testbench/mips0/ctrl0/PCWr
-add wave -noupdate /testbench/mips0/ctrl0/NpcSel
+add wave -noupdate /testbench/mips0/ctrl0/npcSel
 add wave -noupdate /testbench/mips0/ctrl0/IRWr
 add wave -noupdate /testbench/mips0/ctrl0/GPRWr
 add wave -noupdate /testbench/mips0/ctrl0/zero
 add wave -noupdate /testbench/mips0/WDsel
-add wave -noupdate /testbench/mips0/writereg
+add wave -noupdate /testbench/mips0/writeReg
 add wave -noupdate /testbench/mips0/wd
 add wave -noupdate /testbench/mips0/ifu0/pc
 add wave -noupdate /testbench/mips0/ifu0/npc
