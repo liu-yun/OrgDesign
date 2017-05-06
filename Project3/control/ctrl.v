@@ -90,7 +90,6 @@ module ctrl(clk, rst, opcode, funct, zero, PCWr, npcSel, IRWr, GPRWr, DMWr, AluO
 
     assign PCWr = (state === S0) | (state === S2 & ( J | JAL | JR | (BEQ & zero)));
     assign npcSel = (state === S0) ? 3'b000:  //Invalid
-  (state === S1) & (BEQ | J | JAL) ? 3'b001:
               (state === S2) & BEQ ? 3'b001:
         (state === S2) & (J | JAL) ? 3'b010:
                (state === S2) & JR ? 3'b100:

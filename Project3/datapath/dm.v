@@ -29,13 +29,13 @@ module dm_4k(addr, din, we, clk, dout, bmode, bsel);
     always @(*) begin 
         if (bmode) begin
           case (bsel)
-            0: begin dout[7:0] <= dm[addr][7:0]; end
-            1: begin dout[7:0] <= dm[addr][15:8]; end
-            2: begin dout[7:0] <= dm[addr][23:16]; end
-            3: begin dout[7:0] <= dm[addr][31:24]; end
+            0: begin dout[7:0] = dm[addr][7:0]; end
+            1: begin dout[7:0] = dm[addr][15:8]; end
+            2: begin dout[7:0] = dm[addr][23:16]; end
+            3: begin dout[7:0] = dm[addr][31:24]; end
           endcase
           dout={{24{dout[7]}}, dout[7:0]};
         end
-        else dout <= dm[addr];
+        else dout = dm[addr];
     end
 endmodule
