@@ -1,3 +1,5 @@
 /Project2/work
 *.wlf
 /Project3/work
+/Project3/wlft*
+/Project3/Project3.cr.mti
