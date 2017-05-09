@@ -29,6 +29,6 @@ module mips(clk, rst);
 
     ext ext0(.imm16(instrR[15:0]), .ExtOp(ExtOp), .extout(extout));
     mux3_32 wd_mux(.a(AluOutR), .b(readDataR), .c(pcp4), .sel(WDsel), .out(wd));
-    mux3_5 writeReg_mux(.a(instrR[20:16]), .b(instrR[15:11]), .c(5'h1f), .sel(GPRsel), .out(writeReg));
+    mux3_5 writeReg_mux(.a(instrR[20:16]), .b(instrR[15:11]), .c((instrR[15:11] === 5'b0) ? 5'h1f : instrR[15:11]), .sel(GPRsel), .out(writeReg));
     mux2_32 aluB_mux(.a(rdbR), .b(extout), .sel(AluBsel), .out(AluB));
 endmodule
