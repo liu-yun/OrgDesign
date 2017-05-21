@@ -13,13 +13,12 @@ module led(clk, rst, addr, we, DEV_WD, DEVLed_RD, led1_sel, led2_sel, led1_signa
     assign led2_sel = sel;
     
     always @(posedge clk or posedge rst) begin
-        if (rst)
-        begin
+        if (rst) begin
             preset <= 32'b0;
             current <= 32'b0;
             sel <= 4'b0001;
         end
-        else if(we)
+        else if (we)
             case (addr)
             2'd0 : preset <= DEV_WD;
             2'd1 : current <= DEV_WD;
@@ -82,5 +81,13 @@ module led(clk, rst, addr, we, DEV_WD, DEVLed_RD, led1_sel, led2_sel, led1_signa
             4'he : led2_signal <= 8'b10011110;
             4'hf : led2_signal <= 8'b10001110;
         endcase
+    end
+
+    initial begin
+        preset <= 32'b0;
+        current <= 32'b0;
+        sel <= 4'b0001;
+        num1 <= 4'b0;
+        num2 <= 4'b0;
     end
 endmodule

@@ -7,7 +7,6 @@ module bridge(PrAddr, PrRD, PrWD, PrWe, HWInt, DEV_Addr, DEV_WD, DEVSwitch_RD, D
     output [7:2] HWInt;
     
     output [3:2] DEV_Addr;
-    
     output [31:0] DEV_WD;
     input [31:0] DEVSwitch_RD, DEVTimer_RD, DEVLed_RD;
     output DEVSwitch_we, DEVTimer_we, DEVLed_we;

@@ -17,8 +17,8 @@ module mips(clk, rst, PrAddr, BE, PrDIn, PrDOut, PrWe, HWInt);
     wire [1:0] lbsel;
     wire AluBsel, zero, bmode, PCWr, IRWr, GPRWr, DMWr, IntReq, Wen, EXLSet, EXLClr;
 
-    assign PrAddr = rdbR;
-    assign PrDOut = AluOutR;
+    assign PrAddr = AluOutR[31:2];
+    assign PrDOut = rdbR;
 
     ctrl u_ctrl(.clk(clk), .rst(rst), .instr(instrR), .PrAddr(PrAddr), .zero(zero), .IntReq(IntReq),
                .PCWr(PCWr), .npcSel(npcSel), .IRWr(IRWr), .GPRWr(GPRWr), .DMWr(DMWr), .AluOp(AluOp),
@@ -31,7 +31,7 @@ module mips(clk, rst, PrAddr, BE, PrDIn, PrDOut, PrWe, HWInt);
     npc u_npc(.pc(pc), .imm(instrR[25:0]), .target(rdaR), .epc(epc), .npcSel(npcSel), .zero(zero), .npc(npc), .pcp4(pcp4));
     initial $monitor("Instr %8X at %8X", instr, {pc, 2'b00});
 
-    cp0 u_cp0(.clk(clk), .rst(rst), .Wen(Wen), .EXLSet(EXLSet), .EXLClr(EXLClr), .pc(pc), .DIn(rdaR), .HWInt(HWInt), .sel(instrR[20:16]), .IntReq(IntReq), .epc(epc), .DOut(cp0out));
+    cp0 u_cp0(.clk(clk), .rst(rst), .Wen(Wen), .EXLSet(EXLSet), .EXLClr(EXLClr), .pc(pc), .DIn(rdbR), .HWInt(HWInt), .sel(instrR[15:11]), .IntReq(IntReq), .epc(epc), .DOut(cp0out));
     
     mux3_5 writeReg_mux(.a(instrR[20:16]), .b(instrR[15:11]), .c(5'h1f), .sel(GPRsel), .out(writeReg));
     gpr u_rf(.clk(clk), .rst(rst), .ra(instrR[25:21]), .rb(instrR[20:16]), .rw(writeReg), 
@@ -49,5 +49,3 @@ module mips(clk, rst, PrAddr, BE, PrDIn, PrDOut, PrWe, HWInt);
 
     mux5_32 wd_mux(.a(AluOutR), .b(readDataR), .c(pcp4), .d(PrDIn), .e(cp0out), .sel(WDsel), .out(wd));
 endmodule
-
-//MFC wd src

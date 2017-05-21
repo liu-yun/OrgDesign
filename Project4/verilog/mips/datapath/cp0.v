@@ -23,7 +23,7 @@ module cp0(clk, rst, Wen, EXLSet, EXLClr, pc, DIn, HWInt, sel, IntReq, epc, DOut
         if (rst) begin
            im <= 6'b0;
            exl <= 1'b0;
-           ie <= 1'b0; 
+           ie <= 1'b0;
         end
         else if (Wen) begin
             if (sel == 5'd12)
@@ -42,4 +42,12 @@ module cp0(clk, rst, Wen, EXLSet, EXLClr, pc, DIn, HWInt, sel, IntReq, epc, DOut
                   (sel == 5'd13) ? CAUSE :
                   (sel == 5'd14) ? epc :
                   (sel == 5'd15) ? PRId : 32'b0;
+
+    initial begin
+        im <= 6'b0;
+        exl <= 1'b0;
+        ie <= 1'b0;
+        hwint_pend <= 6'b0;
+        epc <= 30'b0;
+    end
 endmodule

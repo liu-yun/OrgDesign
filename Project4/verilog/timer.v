@@ -6,7 +6,7 @@ module timer(clk, rst, addr, we, DEV_WD, DEVTimer_RD, IRQ);
     output reg IRQ;
 
     reg [31:0] ctrl, preset, count;
-    wire IM = ctrl[3];
+    wire IM = ctrl[3];              //1 allow interrupt
     wire [2:1] mode = ctrl[2:1];
     wire enable = ctrl[0];
 
@@ -50,4 +50,10 @@ module timer(clk, rst, addr, we, DEV_WD, DEVTimer_RD, IRQ);
         end
     end
     
+    initial begin
+        ctrl <= 32'b0;
+        preset <= 32'b0;
+        count <= 32'b0;
+        IRQ <= 0;
+    end
 endmodule
