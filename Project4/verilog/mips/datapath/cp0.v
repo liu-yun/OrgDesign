@@ -1,5 +1,5 @@
-module cp0(clk, rst, Wen, EXLSet, EXLClr, pc, DIn, HWInt, sel, IntReq, epc, DOut);
-    input clk, rst, Wen, EXLSet, EXLClr;
+module cp0(clk, rst, Wen, EXLSet, EXLClr, pc, DIn, HWInt, sel, EPCWr, IntReq, epc, DOut);
+    input clk, rst, Wen, EXLSet, EXLClr, EPCWr;
     input [31:2] pc;
     input [31:0] DIn;
     input [7:2] HWInt;
@@ -32,7 +32,8 @@ module cp0(clk, rst, Wen, EXLSet, EXLClr, pc, DIn, HWInt, sel, IntReq, epc, DOut
                 exl <= 1'b1;
             if (EXLClr)
                 exl <= 1'b0;
-            epc <= pc;
+            if (EPCWr)
+                epc <= pc;
         end
         hwint_pend <= HWInt;
     end

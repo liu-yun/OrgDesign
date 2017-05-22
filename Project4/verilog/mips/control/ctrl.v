@@ -1,5 +1,5 @@
 module ctrl(clk, rst, instr, PrAddr, zero, IntReq, PCWr, npcSel, IRWr, GPRWr, DMWr, AluOp, AluBsel, GPRsel, WDsel, ExtOp, bmode, 
-            Wen, EXLSet, EXLClr, PrWe);
+            Wen, EXLSet, EXLClr, PrWe, EPCWr);
     input clk, rst, zero, IntReq;
     input [31:0] instr;
     wire [5:0] opcode = instr[31:26], funct = instr[5:0];
@@ -8,7 +8,7 @@ module ctrl(clk, rst, instr, PrAddr, zero, IntReq, PCWr, npcSel, IRWr, GPRWr, DM
     output [2:0] npcSel, WDsel;
     output [1:0] GPRsel, ExtOp;
     output AluBsel, GPRWr, bmode, PCWr, IRWr, GPRWr, DMWr;
-    output Wen, EXLSet, EXLClr, PrWe;
+    output Wen, EXLSet, EXLClr, PrWe, EPCWr;
     output [3:0] AluOp;
 
     wire R_TYPE, ADDU, SUBU, SLT, JR, ORI, LUI, LW, SW, LB, SB, ADDI, ADDIU, BEQ, J, JAL, COP0, ERET, MFC0, MTC0, HitDEV;
@@ -151,4 +151,5 @@ module ctrl(clk, rst, instr, PrAddr, zero, IntReq, PCWr, npcSel, IRWr, GPRWr, DM
     assign EXLSet = s5 & IntReq;
     assign EXLClr = s2 & ERET;
     assign Wen = (s5 & IntReq) | (s2 & (MTC0 | ERET)); //we for cp0
+    assign EPCWr = (s5 & IntReq);
 endmodule
