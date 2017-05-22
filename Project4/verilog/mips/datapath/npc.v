@@ -13,7 +13,7 @@ module npc(pc, imm, target, epc, npcSel, zero, npc, pcp4);
     assign npc = (zero && npcSel == 3'b001) ? pc + {{14{imm[15]}}, imm[15:0]} :  //beq
                          (npcSel == 3'b010) ? {pc[31:28], imm} :                 //j jal
                          (npcSel == 3'b100) ? target[31:2] :                     //jr
-                         (npcSel == 3'b101) ? except :                           //to exception
+                         (npcSel == 3'b101) ? except[31:2] :                     //to exception
                          (npcSel == 3'b110) ? epc :                              //epc
                                               pc + 1;
 

@@ -25,7 +25,7 @@ module mips(clk, rst, PrAddr, BE, PrDIn, PrDOut, PrWe, HWInt);
                .GPRsel(GPRsel), .AluBsel(AluBsel), .WDsel(WDsel), .ExtOp(ExtOp), .bmode(bmode),
                .Wen(Wen), .EXLSet(EXLSet), .EXLClr(EXLClr), .PrWe(PrWe));
 
-    im_4k u_im(.addr(pc[11:2]), .dout(instr));
+    im_4k u_im(.addr(pc[15:2]), .dout(instr));
     pc u_pc(.npc(npc), .clk(clk), .PCWr(PCWr), .rst(rst), .pc(pc));
     reg_we IR(.clk(clk), .next(instr), .we(IRWr), .out(instrR));
     npc u_npc(.pc(pc), .imm(instrR[25:0]), .target(rdaR), .epc(epc), .npcSel(npcSel), .zero(zero), .npc(npc), .pcp4(pcp4));
@@ -44,7 +44,7 @@ module mips(clk, rst, PrAddr, BE, PrDIn, PrDOut, PrWe, HWInt);
     alu u_alu(.A(rdaR), .B(AluB), .AluOp(AluOp), .dout(AluOut), .zero(zero));
     reg_nwe AluR(.clk(clk), .next(AluOut), .out(AluOutR));
 
-    dm_4k u_dm(.addr(AluOutR[11:2]), .din(rdbR), .we(DMWr), .clk(clk), .dout(readData), .bmode(bmode), .bsel(AluOutR[1:0]));
+    dm_4k u_dm(.addr(AluOutR[15:2]), .din(rdbR), .we(DMWr), .clk(clk), .dout(readData), .bmode(bmode), .bsel(AluOutR[1:0]));
     reg_nwe DR(.clk(clk), .next(readData), .out(readDataR));
 
     mux5_32 wd_mux(.a(AluOutR), .b(readDataR), .c(pcp4), .d(PrDIn), .e(cp0out), .sel(WDsel), .out(wd));

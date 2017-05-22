@@ -32,9 +32,9 @@ module cp0(clk, rst, Wen, EXLSet, EXLClr, pc, DIn, HWInt, sel, IntReq, epc, DOut
                 exl <= 1'b1;
             if (EXLClr)
                 exl <= 1'b0;
-            hwint_pend <= HWInt;
             epc <= pc;
         end
+        hwint_pend <= HWInt;
     end
     
     assign IntReq = |HWInt[7:2] & |im[15:10] & ie & !exl;
