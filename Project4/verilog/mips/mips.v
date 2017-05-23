@@ -2,7 +2,7 @@ module mips(clk, rst, PrAddr, BE, PrDIn, PrDOut, PrWe, HWInt);
     input clk;   // clock
     input rst;   // reset
     output [31:2] PrAddr;
-    output [3:0] BE; //????
+    output [3:0] BE;
     input [31:0] PrDIn;
     output [31:0] PrDOut;
     output PrWe;
@@ -49,4 +49,5 @@ module mips(clk, rst, PrAddr, BE, PrDIn, PrDOut, PrWe, HWInt);
     reg_nwe DR(.clk(clk), .next(readData), .out(readDataR));
 
     mux5_32 wd_mux(.a(AluOutR), .b(readDataR), .c(pcp4), .d(PrDIn), .e(cp0out), .sel(WDsel), .out(wd));
+    decoder_4 be_decoder(.in(AluOutR[1:0]), .out(BE), .en(bmode));
 endmodule

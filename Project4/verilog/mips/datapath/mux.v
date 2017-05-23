@@ -31,3 +31,13 @@ module mux5_32(a, b, c, d, e, sel, out);
                  (sel == 3'b011) ? d :
                  (sel == 3'b100) ? e : 32'b0;
 endmodule
+
+module decoder_4(in, out, en);
+    input en;
+    input [1:0] in;
+    output [3:0] out;
+    assign out = !en ? 0000 :
+         in == 2'b00 ? 0001 :
+         in == 2'b01 ? 0010 :
+         in == 2'b10 ? 0100 : 1000;
+endmodule

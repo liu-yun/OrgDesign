@@ -142,12 +142,12 @@ module ctrl(clk, rst, instr, PrAddr, zero, IntReq, PCWr, npcSel, IRWr, GPRWr, DM
     assign DEVtoReg = (LW | LB) & HitDEV;
     assign bmode = (LB | SB);
     assign ExtOp = s0 ? 2'b11: {(LUI), (LW | LB | SW | SB | ADDI | ADDIU)};
-    assign WDsel = s0 ? 3'b111: //Invalid
-  (!MemtoReg && !JAL) ? 3'b000: //Alu
-   (MemtoReg && !JAL) ? 3'b001: //DM
-                  JAL ? 3'b010: //JAL
-             DEVtoReg ? 3'b011: //Din
-                        3'b100; //cp0out
+    assign WDsel =            s0 ? 3'b111: //Invalid
+(!MemtoReg && !JAL && !DEVtoReg) ? 3'b000: //Alu
+ (MemtoReg && !JAL && !DEVtoReg) ? 3'b001: //DM
+                JAL && !DEVtoReg ? 3'b010: //JAL
+                        DEVtoReg ? 3'b011: //Din
+                                   3'b100; //cp0out
     assign EXLSet = s5 & IntReq;
     assign EXLClr = s2 & ERET;
     assign Wen = (s5 & IntReq) | (s2 & (MTC0 | ERET)); //we for cp0

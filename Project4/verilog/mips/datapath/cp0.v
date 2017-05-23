@@ -27,7 +27,7 @@ module cp0(clk, rst, Wen, EXLSet, EXLClr, pc, DIn, HWInt, sel, EPCWr, IntReq, ep
         end
         else if (Wen) begin
             if (sel == 5'd12)
-                {im, exl, ie} <= {DIn[15:10], DIn[1], DIn[0]};
+                {im, ie} <= {DIn[15:10], DIn[0]};
             if (EXLSet)
                 exl <= 1'b1;
             if (EXLClr)
